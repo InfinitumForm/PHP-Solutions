@@ -1,10 +1,10 @@
 <?php
+
 /*
  * Find details of the operating system
  * @author Ivijan-Stefan Stipic <creativform@gmail.com>
  * @version 1.0.0 BETA
 */
-
 class OS
 {
     /*
