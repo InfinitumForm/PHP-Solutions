@@ -65,7 +65,7 @@ class OS
 	*/
 	public static function is_php64()
 	{
-		// Check is PHP 64bit (PHP 64bit only running on Windows 64bit version)
+		// Check is PHP 64bit (PHP 64bit only running on 64bit OS version)
 		if (version_compare(PHP_VERSION, '5.0.5') >= 0)
 		{
 			if(defined('PHP_INT_SIZE') && PHP_INT_SIZE === 8)
@@ -118,7 +118,7 @@ class OS
 			}
 		}
 
-		// Check if PHP is 64 bit vesion (PHP 64bit only running on Windows 64bit version)
+		// Check if PHP is 64 bit vesion (PHP 64bit only running on 64bit OS version)
 		$is_php64 = self::is_php64();
 		if($is_php64)
 			return true;
