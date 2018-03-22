@@ -4,7 +4,7 @@
  *
  * @description      This file fix removed functionality from PHP7 and add them back on the new way
  * @url              https://wiki.php.net/rfc/remove_deprecated_functionality_in_php7
- * @autor            Ivijan-Stefan Stipic <creativform@gmail.com>
+ * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
  * @version          1.0.0
 **/
 if (version_compare(PHP_VERSION, '7.0.0', '>=')):
@@ -12,7 +12,7 @@ if (version_compare(PHP_VERSION, '7.0.0', '>=')):
 	 * @name             split
 	 * @description      split — Split string into array by regular expression (PHP 4, PHP 5)
 	 * @url              http://php.net/manual/en/function.split.php
-	 * @autor            Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
 	**/
 	if(!function_exists('split')):
 		function split($pattern, $string, $limit = -1, $flags = 0)
@@ -30,7 +30,7 @@ if (version_compare(PHP_VERSION, '7.0.0', '>=')):
 	 * @name             call_user_method
 	 * @description      call_user_method — Call a user method on an specific object (PHP 4, PHP 5)
 	 * @url              http://php.net/manual/en/function.call-user-method.php
-	 * @autor            Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
 	**/
 	if(!function_exists('call_user_method')):
 		function call_user_method($method_name, &$obj, $parameter)
@@ -54,7 +54,7 @@ if (version_compare(PHP_VERSION, '7.0.0', '>=')):
 	 * @name             call_user_method_array
 	 * @description      call_user_method_array — Call a user method given with an array of parameters (PHP 4 >= 4.0.5, PHP 5)
 	 * @url              http://php.net/manual/en/function.call-user-method-array.php
-	 * @autor            Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
 	**/
 	if(!function_exists('call_user_method_array')):
 		function call_user_method_array($method_name, &$obj, $params)
@@ -69,7 +69,7 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')):
 	 * @name             call_user_method_array
 	 * @description      call_user_method_array — Call a user method given with an array of parameters (PHP 4 >= 4.0.1, PHP 5, PHP 7) (eval()  must be anabled)
 	 * @url              http://php.net/manual/en/function.create-function.php
-	 * @autor            Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
 	**/
 	if(!function_exists('create_function')):
 		function create_function($args, $code)
