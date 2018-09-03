@@ -108,6 +108,12 @@ if(!function_exists('mysql_query'))
 		return mysqli_query($_mysql_connect, $query);
 	}
 }
+if(!function_exists('mysql_fetch_object'))
+{
+	function mysql_fetch_object($result){
+		return mysqli_fetch_object($result);
+	}
+}
 if(!function_exists('mysql_fetch_array'))
 {
 	function mysql_fetch_array($result){
