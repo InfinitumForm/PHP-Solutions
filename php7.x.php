@@ -185,3 +185,9 @@ if(!function_exists('mysql_get_server_info'))
 		return mysqli_get_server_info($_mysql_connect);
 	}
 }
+if(!function_exists('mysql_close'))
+{
+	function mysql_close($_mysql_connect) {
+		return mysqli_close($_mysql_connect);
+	}
+}
