@@ -155,7 +155,7 @@ if(!function_exists('mysql_insert_id'))
 }
 if(!function_exists('mysql_data_seek'))
 {
-	function mysql_data_seek($db_query, $row_number) {
+	function mysql_data_seek($db_query, $row_number=0) {
 		return mysqli_data_seek($db_query, $row_number);
 	}
 }
