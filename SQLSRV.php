@@ -5,10 +5,10 @@
 class SQLSRV{
 	
 	private $settings = array(
-		'Host'						=>	'db_sql',
-		'Database'					=>	'BDEDaten',
-		'UID'						=>	'Intranet',
-		'PWD'						=>	'K95#$Auy9ZaQ',
+		'Host'						=>	'HOSTNAME',
+		'Database'					=>	'DATABASE',
+		'UID'						=>	'USERNAME',
+		'PWD'						=>	'PASSWORD',
 		"CharacterSet"				=>	"UTF-8",
 		"ConnectionPooling"			=>	"1",
 		"MultipleActiveResultSets"	=>	'0'
