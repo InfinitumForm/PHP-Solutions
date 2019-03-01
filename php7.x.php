@@ -79,6 +79,41 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')):
 	endif;
 endif;
 
+if (version_compare(PHP_VERSION, '7.3.0', '>=')):
+	/**
+	 * @name             FILTER_FLAG_SCHEME_REQUIRED
+	 * @description      Requires the URL to contain a scheme part. Used with: FILTER_VALIDATE_URL
+	 * @url              http://php.net/manual/en/filter.filters.flags.php
+	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	**/
+	if(!defined('FILTER_FLAG_SCHEME_REQUIRED'))
+	{
+		define('FILTER_FLAG_SCHEME_REQUIRED',65536);
+	}
+	/**
+	 * @name             FILTER_FLAG_HOST_REQUIRED
+	 * @description      Requires the URL to contain a host part. Used with: FILTER_VALIDATE_URL
+	 * @url              http://php.net/manual/en/filter.filters.flags.php
+	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	**/
+	if(!defined('FILTER_FLAG_HOST_REQUIRED'))
+	{
+		define('FILTER_FLAG_HOST_REQUIRED',131072);
+	}
+	/**
+	 * @name             image2wbmp
+	 * @description      image2wbmp — Output image to browser or file
+	 * @url              http://php.net/manual/en/function.image2wbmp.php
+	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	**/
+	if(!function_exists('image2wbmp'))
+	{
+		function image2wbmp($image, $to=NULL, $foreground=0){
+			return imagewbmp($image, $to, $foreground);
+		}
+	}
+endif;
+
 /**
  * @name             MySQL to MySQLi
  * @description      Let's bring MySQL deprecated support on new way
