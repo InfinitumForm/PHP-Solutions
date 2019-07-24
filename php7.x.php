@@ -3,8 +3,8 @@
  * PHP7 DEPRECATED FUNCTION SUPPORT
  *
  * @description      This file fix removed functionality from PHP7 and add them back on the new way
-                     You just need to add this PHP file at the top of your enthire project and will
-					 work nice for you.
+ *                   You just need to add this PHP file at the top of your enthire project and will
+ *                   work nice for you.
  * @url              https://wiki.php.net/rfc/remove_deprecated_functionality_in_php7
  * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
  * @version          1.0.0
