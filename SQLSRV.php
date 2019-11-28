@@ -5,12 +5,12 @@
 class SQLSRV{
 	
 	private $settings = array(
-		'Host'						=>	'HOSTNAME',
-		'Database'					=>	'DATABASE',
-		'UID'						=>	'USERNAME',
-		'PWD'						=>	'PASSWORD',
-		"CharacterSet"				=>	"UTF-8",
-		"ConnectionPooling"			=>	"1",
+		'Host'				=>	'HOSTNAME',
+		'Database'			=>	'DATABASE',
+		'UID'				=>	'USERNAME',
+		'PWD'				=>	'PASSWORD',
+		"CharacterSet"			=>	"UTF-8",
+		"ConnectionPooling"		=>	"1",
 		"MultipleActiveResultSets"	=>	'0'
 	);
 	
