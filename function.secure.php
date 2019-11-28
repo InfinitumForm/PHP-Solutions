@@ -2,10 +2,10 @@
 /**
 * SECURE TOKEN GENERATOR
 * Tokens should be created using a cryptographically secure random number generator.
-  If they are made with rand, the state of the random number generator can be cracked trivially
-  in many cases, and tokens can be predicted. On Linux it is a little bit harder to predict tokens,
-  but this does still not give secure tokens. The random number generator on Windows is particularly
-  easy to exploit, since any state of the random number generator can be cracked within minutes.
+* If they are made with rand, the state of the random number generator can be cracked trivially
+* in many cases, and tokens can be predicted. On Linux it is a little bit harder to predict tokens,
+* but this does still not give secure tokens. The random number generator on Windows is particularly
+* easy to exploit, since any state of the random number generator can be cracked within minutes.
 *
 * @author   Ivijan-Stefan Stipic <creativform@gmail.com>
 * @version  1.0.0
