@@ -3,10 +3,10 @@
  * PHP7 DEPRECATED FUNCTION SUPPORT
  *
  * @description      This file fix removed functionality from PHP7 and add them back on the new way
-                     You just need to add this PHP file at the top of your enthire project and will
-					 work nice for you.
+ *                   You just need to add this PHP file at the top of your enthire project and will
+ *                   work nice for you.
  * @url              https://wiki.php.net/rfc/remove_deprecated_functionality_in_php7
- * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
+ * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
  * @version          1.0.0
 **/
 if (version_compare(PHP_VERSION, '7.0.0', '>=')):
@@ -56,7 +56,7 @@ if (version_compare(PHP_VERSION, '7.0.0', '>=')):
 	 * @name             call_user_method_array
 	 * @description      call_user_method_array — Call a user method given with an array of parameters (PHP 4 >= 4.0.5, PHP 5)
 	 * @url              http://php.net/manual/en/function.call-user-method-array.php
-	 * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
 	**/
 	if(!function_exists('call_user_method_array')):
 		function call_user_method_array($method_name, &$obj, $params)
@@ -71,7 +71,7 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')):
 	 * @name             call_user_method_array
 	 * @description      call_user_method_array — Call a user method given with an array of parameters (PHP 4 >= 4.0.1, PHP 5, PHP 7) (eval()  must be anabled)
 	 * @url              http://php.net/manual/en/function.create-function.php
-	 * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
 	**/
 	if(!function_exists('create_function')):
 		function create_function($args, $code)
