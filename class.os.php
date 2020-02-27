@@ -50,6 +50,10 @@ class OS
         // Sandard search
         if (in_array(strtoupper(substr(PHP_OS, 0, 3)), array('WIN'), true) !== false)
             return true;
+		
+		// If PHP_SHLIB_SUFFIX is equal to "dll",then PHP is running on a Windows.
+		if(defined('PHP_SHLIB_SUFFIX') && strtolower(PHP_SHLIB_SUFFIX) === 'dll'){
+			return true;
 
         // Laravel approach
         if(defined('DIRECTORY_SEPARATOR') && '\\' === DIRECTORY_SEPARATOR)
