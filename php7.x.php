@@ -66,7 +66,8 @@ if (version_compare(PHP_VERSION, '7.0.0', '>=')):
 	endif;
 endif;
 
-if (version_compare(PHP_VERSION, '7.2.0', '>=')):
+if (version_compare(PHP_VERSION, '7.2.0', '>='))
+{
 	/**
 	 * @name             call_user_method_array
 	 * @description      call_user_method_array — Call a user method given with an array of parameters (PHP 4 >= 4.0.1, PHP 5, PHP 7) (eval()  must be anabled)
@@ -79,7 +80,9 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')):
 			return eval('function('.$args.'){'.$code.'}');
 		}
 	endif;
-else if (version_compare(PHP_VERSION, '7.3.0', '>=')):
+}
+else if (version_compare(PHP_VERSION, '7.3.0', '>='))
+{
 	/**
 	 * @name             FILTER_FLAG_SCHEME_REQUIRED
 	 * @description      Requires the URL to contain a scheme part. Used with: FILTER_VALIDATE_URL
@@ -112,9 +115,9 @@ else if (version_compare(PHP_VERSION, '7.3.0', '>=')):
 			return imagewbmp($image, $to, $foreground);
 		}
 	}
-	
-else if (version_compare(PHP_VERSION, '7.4.0', '>=')):
-
+}
+else if (version_compare(PHP_VERSION, '7.4.0', '>='))
+{
 	/**
 	 * @name             money_format
 	 * @description      money_format — Formats a number as a currency string
@@ -257,8 +260,25 @@ else if (version_compare(PHP_VERSION, '7.4.0', '>=')):
 			return is_array($array) ? isset($array[$key]) : (is_object($array) ? method_exists($array, $key) : false);
 		}
 	}
+}
 
-endif;
+/**
+ * @name             Return missing constants
+ * @description      This will give some older PHP versions constants that missing.
+ * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+**/
+// Return WEBP constant
+if(!defined(IMAGETYPE_WEBP)) {
+	define('IMAGETYPE_WEBP', 18);
+}
+// Return ICO constant
+if(!defined(IMAGETYPE_ICO)) {
+	define('IMAGETYPE_ICO', 17);
+}
+// Fix missing PHP SESSION constant PHP_SESSION_NONE (this is bug on the some Nginx servers)
+if (!defined('PHP_SESSION_NONE')) {
+	define('PHP_SESSION_NONE', -1);
+}
 
 /**
  * @name             MySQL to MySQLi

@@ -3,7 +3,7 @@
 /*
  * Find details of the operating system
  * @author Ivijan-Stefan Stipic <creativform@gmail.com>
- * @version 1.1.0 BETA
+ * @version 1.1.1 BETA
 */
 class OS
 {
@@ -14,30 +14,18 @@ class OS
 	*/
     public static function user_agent()
     {
-        if (isset($_SERVER['HTTP_USER_AGENT']))
-        {
+		global $HTTP_USER_AGENT, $HTTP_SERVER_VARS;
+		
+		if ( !empty($HTTP_USER_AGENT) )
+        	return $HTTP_USER_AGENT;
+			
+		if ( !empty($HTTP_SERVER_VARS) && isset($HTTP_SERVER_VARS['HTTP_USER_AGENT']) && !empty($HTTP_SERVER_VARS['HTTP_USER_AGENT']) )
+        	return $HTTP_SERVER_VARS['HTTP_USER_AGENT'];
+		
+        if ( isset($_SERVER['HTTP_USER_AGENT']) )
             return $_SERVER['HTTP_USER_AGENT'];
-        }
-        else
-        {
-            global $HTTP_SERVER_VARS;
-            if (isset($HTTP_SERVER_VARS))
-            {
-                return $HTTP_SERVER_VARS['HTTP_USER_AGENT'];
-            }
-            else
-            {
-                global $HTTP_USER_AGENT;
-                if (isset($HTTP_SERVER_VARS))
-                {
-                    return $HTTP_SERVER_VARS;
-                }
-                else
-                {
-                    return 'undefined';
-                }
-            }
-        }
+
+		return 'undefined';
     }
 
     /*
@@ -52,7 +40,7 @@ class OS
             return true;
 		
 		// If PHP_SHLIB_SUFFIX is equal to "dll",then PHP is running on a Windows.
-		if(defined('PHP_SHLIB_SUFFIX') && strtolower(PHP_SHLIB_SUFFIX) === 'dll'){
+		if(defined('PHP_SHLIB_SUFFIX') && strtolower(PHP_SHLIB_SUFFIX) === 'dll')
 			return true;
 
         // Laravel approach
@@ -97,6 +85,11 @@ class OS
 	*/
 	public static function is_os64()
 	{
+		// Check if PHP is 64 bit vesion (PHP 64bit only running on 64bit OS version)
+		$is_php64 = self::is_php64();
+		if($is_php64)
+			return true;
+			
 		// Let's ask system directly
 		if(function_exists('shell_exec'))
 		{
@@ -121,17 +114,6 @@ class OS
 				}
 			}
 		}
-
-		// Check if PHP is 64 bit vesion (PHP 64bit only running on 64bit OS version)
-		$is_php64 = self::is_php64();
-		if($is_php64)
-			return true;
-
-        // User agent also have hidden informations
-        $arch_regex = '/\b(x86_64|x86-64|Win64|WOW64|x64|ia64|amd64|ppc64|sparc64|IRIX64)\b/ix';
-        $user_agent = self::user_agent();
-        if(preg_match($arch_regex, $user_agent))
-            return true;
 
 		// bit-shifting can help also
 		if((bool)((1<<32)-1))
@@ -274,7 +256,7 @@ class OS
 				'android'                                    =>  'Android',
 				'blackberry'                                 =>  'BlackBerry',
 				'webos'                                      =>  'Mobile',
-				'(media center pc).([0-9]{1,2}\.[0-9]{1,2})'=>'Windows Media Center',
+				'(media center pc).([0-9]{1,2}\.[0-9]{1,2})' =>'Windows Media Center',
 				'(win)([0-9]{1,2}\.[0-9x]{1,2})'=>'Windows',
 				'(win)([0-9]{2})'=>'Windows',
 				'(windows)([0-9x]{2})'=>'Windows',
