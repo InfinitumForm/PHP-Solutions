@@ -77,7 +77,7 @@ if (version_compare(PHP_VERSION, '7.2.0', '>='))
 	if(!function_exists('create_function')):
 		function create_function($args, $code)
 		{
-			return eval('function('.$args.'){'.$code.'}');
+			return eval("function ( {$args} ) { {$code} }");
 		}
 	endif;
 }
@@ -263,6 +263,24 @@ else if (version_compare(PHP_VERSION, '7.4.0', '>='))
 }
 
 /**
+ * @name             is_a
+ * @description      is_a — Checks if the object is of this class or has this class as one of its parents
+ * @info             On the some PHP versions this function not exists. On that case we must return it back
+ * @url              https://www.php.net/manual/en/function.is-a.php
+ * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+**/
+if(!function_exists('is_a'))
+{
+	function is_a($object, $class_name, $allow_string = false)
+	{
+		if($allow_string === false)
+			return ($object instanceof $class_name);
+		else
+			return is_subclass_of($object, $class_name, true);
+	}
+}
+
+/**
  * @name             Return missing constants
  * @description      This will give some older PHP versions constants that missing.
  * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
@@ -281,32 +299,32 @@ if (!defined('PHP_SESSION_NONE')) {
 }
 
 /**
- * @name             MySQL to MySQLi
+ * @name             MySQL
  * @description      Let's bring MySQL deprecated support on new way
  * @url              http://php.net/manual/en/book.mysql.php
  * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
 **/
-$_mysql_connect = NULL;
+$php7x_mysql_connect = NULL;
 if(!function_exists('mysql_connect'))
 {
 	function mysql_connect($server, $user, $password){
-		global $_mysql_connect;
-		$_mysql_connect = mysqli_connect($server, $user, $password);
-		return $_mysql_connect;
+		global $php7x_mysql_connect;
+		$php7x_mysql_connect = mysqli_connect($server, $user, $password);
+		return $php7x_mysql_connect;
 	}
 }
 if(!function_exists('mysql_select_db'))
 {
 	function mysql_select_db($db){
-		global $_mysql_connect;
-		return mysqli_select_db($_mysql_connect, $db);
+		global $php7x_mysql_connect;
+		return mysqli_select_db($php7x_mysql_connect, $db);
 	}
 }
 if(!function_exists('mysql_query'))
 {
 	function mysql_query($query){
-		global $_mysql_connect;
-		return mysqli_query($_mysql_connect, $query);
+		global $php7x_mysql_connect;
+		return mysqli_query($php7x_mysql_connect, $query);
 	}
 }
 if(!function_exists('mysql_fetch_object'))
@@ -336,22 +354,22 @@ if(!function_exists('mysql_num_rows'))
 if(!function_exists('mysql_set_charset'))
 {
 	function mysql_set_charset($charset){
-		global $_mysql_connect;
-		return mysqli_set_charset($_mysql_connect, $charset);
+		global $php7x_mysql_connect;
+		return mysqli_set_charset($php7x_mysql_connect, $charset);
 	}
 }
 if(!function_exists('mysql_real_escape_string'))
 {
 	function mysql_real_escape_string($string){
-		global $_mysql_connect;
-		return mysqli_real_escape_string($_mysql_connect, $string);
+		global $php7x_mysql_connect;
+		return mysqli_real_escape_string($php7x_mysql_connect, $string);
 	}
 }
 if(!function_exists('mysql_insert_id'))
 {
 	function mysql_insert_id() {
-		global $_mysql_connect;
-		return mysqli_insert_id($_mysql_connect);
+		global $php7x_mysql_connect;
+		return mysqli_insert_id($php7x_mysql_connect);
 	}
 }
 if(!function_exists('mysql_data_seek'))
@@ -375,20 +393,24 @@ if(!function_exists('mysql_free_result'))
 if(!function_exists('mysql_affected_rows'))
 {
 	function mysql_affected_rows() {
-		global $_mysql_connect;
-		return mysqli_affected_rows($_mysql_connect);
+		global $php7x_mysql_connect;
+		return mysqli_affected_rows($php7x_mysql_connect);
 	}
 }
 if(!function_exists('mysql_get_server_info'))
 {
 	function mysql_get_server_info() {
-		global $_mysql_connect;
-		return mysqli_get_server_info($_mysql_connect);
+		global $php7x_mysql_connect;
+		return mysqli_get_server_info($php7x_mysql_connect);
 	}
 }
 if(!function_exists('mysql_close'))
 {
-	function mysql_close($_mysql_connect) {
-		return mysqli_close($_mysql_connect);
+	function mysql_close($connect) {
+		if(!$connect) {
+			global $php7x_mysql_connect;
+			$connect = $php7x_mysql_connect;
+		}
+		return mysqli_close($connect);
 	}
 }
