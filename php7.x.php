@@ -332,11 +332,11 @@ if(!function_exists('is_a'))
  * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
 **/
 // Return WEBP constant
-if(!defined(IMAGETYPE_WEBP)) {
+if(!defined('IMAGETYPE_WEBP')) {
 	define('IMAGETYPE_WEBP', 18);
 }
 // Return ICO constant
-if(!defined(IMAGETYPE_ICO)) {
+if(!defined('IMAGETYPE_ICO')) {
 	define('IMAGETYPE_ICO', 17);
 }
 // Fix missing PHP SESSION constant PHP_SESSION_NONE (this is bug on the some Nginx servers)
