@@ -77,7 +77,11 @@ if (version_compare(PHP_VERSION, '7.2.0', '>='))
 	if(!function_exists('create_function')):
 		function create_function($args, $code)
 		{
-			return eval("function ( {$args} ) { {$code} }");
+			if(function_exists('eval'))
+			{
+				return eval("function ( {$args} ) { {$code} }");
+			}
+			return false;
 		}
 	endif;
 }
@@ -261,6 +265,48 @@ else if (version_compare(PHP_VERSION, '7.4.0', '>='))
 		}
 	}
 }
+
+if (version_compare(PHP_VERSION, '7.0.0', '<')):
+	/**
+	 * @name             array_key_first
+	 * @description      array_key_first — Gets the first key of an array
+	 * @url              https://www.php.net/manual/en/function.array-key-first.php
+	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	**/
+	if(!function_exists('array_key_first')) :
+		function array_key_first( $array ) {
+			if(is_array($array) && !empty($array))
+			{
+				reset($array);
+				if($key = key($array)) {
+					$array = NULL;
+					return $key;
+				}
+			}
+			return NULL;
+		}
+	endif;
+	
+	/**
+	 * @name             array_key_last
+	 * @description      array_key_last — Gets the last key of an array
+	 * @url              https://www.php.net/manual/en/function.array-key-last.php
+	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	**/
+	if(!function_exists('array_key_last')) :
+		function array_key_last( $array ) {
+			if(is_array($array) && !empty($array))
+			{
+				end($array);
+				if($key = key($array)) {
+					$array = NULL;
+					return $key;
+				}
+			}
+			return NULL;
+		}
+	endif;
+endif;
 
 /**
  * @name             is_a
