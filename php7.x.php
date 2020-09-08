@@ -264,9 +264,22 @@ else if (version_compare(PHP_VERSION, '7.4.0', '>='))
 			return is_array($array) ? isset($array[$key]) : (is_object($array) ? method_exists($array, $key) : false);
 		}
 	}
+	
+	/**
+	 * @name             is_real
+	 * @description      Alias of is_float()
+	 * @url              https://www.php.net/manual/en/function.is-real.php
+	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	**/
+	if(!function_exists('is_real'))
+	{
+		function is_real($var){
+			return is_float($var);
+		}
+	}
 }
 
-if (version_compare(PHP_VERSION, '7.0.0', '<')):
+if (version_compare(PHP_VERSION, '7.3.0', '<')):
 	/**
 	 * @name             array_key_first
 	 * @description      array_key_first — Gets the first key of an array
