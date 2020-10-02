@@ -8,8 +8,9 @@
 * @version  1.0.0
 *
 * @param string    $ip           IPv4 address what you want to check
-* @param array     $range        Array of the IP addresses you want to check. Example:
+* @param array     $range        Array of the IP addresses you want to check.
 *
+* Example:
 *
 *	is_ip_in_range( $ip, array(
 *		'50.16.241.113'		=>	'50.16.241.117',
@@ -62,6 +63,6 @@ function is_ip_in_range( $ip, $range ){
 		}
 	}
 	
-	// Ok, it's not crawler
+	// Ok, it's not finded
 	return false;
 }
