@@ -6,15 +6,16 @@
  *                   You just need to add this PHP file at the top of your enthire project and will
  *                   work nice for you.
  * @url              https://wiki.php.net/rfc/remove_deprecated_functionality_in_php7
- * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+ * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
  * @version          1.0.0
 **/
-if (version_compare(PHP_VERSION, '7.0.0', '>=')):
+if (version_compare(PHP_VERSION, '7.0.0', '>='))
+{
 	/**
 	 * @name             split
 	 * @description      split — Split string into array by regular expression (PHP 4, PHP 5)
 	 * @url              http://php.net/manual/en/function.split.php
-	 * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author            Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!function_exists('split')):
 		function split($pattern, $string, $limit = -1, $flags = 0)
@@ -32,7 +33,7 @@ if (version_compare(PHP_VERSION, '7.0.0', '>=')):
 	 * @name             call_user_method
 	 * @description      call_user_method — Call a user method on an specific object (PHP 4, PHP 5)
 	 * @url              http://php.net/manual/en/function.call-user-method.php
-	 * @author            Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author            Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!function_exists('call_user_method')):
 		function call_user_method($method_name, &$obj, $parameter)
@@ -56,7 +57,7 @@ if (version_compare(PHP_VERSION, '7.0.0', '>=')):
 	 * @name             call_user_method_array
 	 * @description      call_user_method_array — Call a user method given with an array of parameters (PHP 4 >= 4.0.5, PHP 5)
 	 * @url              http://php.net/manual/en/function.call-user-method-array.php
-	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!function_exists('call_user_method_array')):
 		function call_user_method_array($method_name, &$obj, $params)
@@ -64,7 +65,7 @@ if (version_compare(PHP_VERSION, '7.0.0', '>=')):
 			call_user_func_array(array($obj, $method_name), $params);
 		}
 	endif;
-endif;
+}
 
 if (version_compare(PHP_VERSION, '7.2.0', '>='))
 {
@@ -72,7 +73,7 @@ if (version_compare(PHP_VERSION, '7.2.0', '>='))
 	 * @name             call_user_method_array
 	 * @description      call_user_method_array — Call a user method given with an array of parameters (PHP 4 >= 4.0.1, PHP 5, PHP 7) (eval()  must be anabled)
 	 * @url              http://php.net/manual/en/function.create-function.php
-	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!function_exists('create_function')):
 		function create_function($args, $code)
@@ -85,13 +86,14 @@ if (version_compare(PHP_VERSION, '7.2.0', '>='))
 		}
 	endif;
 }
-else if (version_compare(PHP_VERSION, '7.3.0', '>='))
+
+if (version_compare(PHP_VERSION, '7.3.0', '>='))
 {
 	/**
 	 * @name             FILTER_FLAG_SCHEME_REQUIRED
 	 * @description      Requires the URL to contain a scheme part. Used with: FILTER_VALIDATE_URL
 	 * @url              http://php.net/manual/en/filter.filters.flags.php
-	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!defined('FILTER_FLAG_SCHEME_REQUIRED'))
 	{
@@ -101,7 +103,7 @@ else if (version_compare(PHP_VERSION, '7.3.0', '>='))
 	 * @name             FILTER_FLAG_HOST_REQUIRED
 	 * @description      Requires the URL to contain a host part. Used with: FILTER_VALIDATE_URL
 	 * @url              http://php.net/manual/en/filter.filters.flags.php
-	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!defined('FILTER_FLAG_HOST_REQUIRED'))
 	{
@@ -111,7 +113,7 @@ else if (version_compare(PHP_VERSION, '7.3.0', '>='))
 	 * @name             image2wbmp
 	 * @description      image2wbmp — Output image to browser or file
 	 * @url              http://php.net/manual/en/function.image2wbmp.php
-	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!function_exists('image2wbmp'))
 	{
@@ -120,8 +122,25 @@ else if (version_compare(PHP_VERSION, '7.3.0', '>='))
 		}
 	}
 }
-else if (version_compare(PHP_VERSION, '7.4.0', '>='))
+
+if (version_compare(PHP_VERSION, '7.4.0', '>='))
 {
+	/**
+	 * @name             get_magic_quotes_gpc
+	 * @description      get_magic_quotes_gpc — Gets the current configuration setting of magic_quotes_gpc
+	 * @url              https://www.php.net/manual/en/function.get-magic-quotes-gpc.php
+	 * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
+	**/
+	if(!function_exists('get_magic_quotes_gpc'))
+	{
+		function get_magic_quotes_gpc() {
+			if(function_exists('ini_get')) {
+				return ini_get('magic_quotes_gpc');
+			}
+			return false;
+		}
+	}
+	
 	/**
 	 * @name             money_format
 	 * @description      money_format — Formats a number as a currency string
@@ -256,7 +275,7 @@ else if (version_compare(PHP_VERSION, '7.4.0', '>='))
 	 * @name             array_key_exists
 	 * @description      array_key_exists — Checks if the given key or index exists in the array
 	 * @url              https://www.php.net/manual/en/function.array-key-exists.php
-	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!function_exists('array_key_exists'))
 	{
@@ -269,7 +288,7 @@ else if (version_compare(PHP_VERSION, '7.4.0', '>='))
 	 * @name             is_real
 	 * @description      Alias of is_float()
 	 * @url              https://www.php.net/manual/en/function.is-real.php
-	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!function_exists('is_real'))
 	{
@@ -284,7 +303,7 @@ if (version_compare(PHP_VERSION, '7.3.0', '<')):
 	 * @name             array_key_first
 	 * @description      array_key_first — Gets the first key of an array
 	 * @url              https://www.php.net/manual/en/function.array-key-first.php
-	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!function_exists('array_key_first')) :
 		function array_key_first( $array ) {
@@ -304,7 +323,7 @@ if (version_compare(PHP_VERSION, '7.3.0', '<')):
 	 * @name             array_key_last
 	 * @description      array_key_last — Gets the last key of an array
 	 * @url              https://www.php.net/manual/en/function.array-key-last.php
-	 * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+	 * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 	**/
 	if(!function_exists('array_key_last')) :
 		function array_key_last( $array ) {
@@ -326,7 +345,7 @@ endif;
  * @description      is_a — Checks if the object is of this class or has this class as one of its parents
  * @info             On the some PHP versions this function not exists. On that case we must return it back
  * @url              https://www.php.net/manual/en/function.is-a.php
- * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+ * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 **/
 if(!function_exists('is_a'))
 {
@@ -342,7 +361,7 @@ if(!function_exists('is_a'))
 /**
  * @name             Return missing constants
  * @description      This will give some older PHP versions constants that missing.
- * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+ * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 **/
 // Return WEBP constant
 if(!defined('IMAGETYPE_WEBP')) {
@@ -361,7 +380,7 @@ if (!defined('PHP_SESSION_NONE')) {
  * @name             MySQL
  * @description      Let's bring MySQL deprecated support on new way
  * @url              http://php.net/manual/en/book.mysql.php
- * @author           Ivijan-Stefan Stipic <creativform@gmail.com>
+ * @author           Ivijan-Stefan Stipic <infinitumform@gmail.com>
 **/
 $php7x_mysql_connect = NULL;
 if(!function_exists('mysql_connect'))
