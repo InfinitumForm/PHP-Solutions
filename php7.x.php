@@ -12,6 +12,32 @@
 if (version_compare(PHP_VERSION, '7.0.0', '>='))
 {
 	/**
+	 * @name             eregi_replace
+	 * @description      eregi_replace — Replace regular expression case insensitive (PHP 5)
+	 * @url              http://php.adamharvey.name/manual/en/function.eregi-replace.php
+	 * @author            Ivijan-Stefan Stipic <infinitumform@gmail.com>
+	**/
+	if(!function_exists('eregi_replace')):
+		function eregi_replace ($pattern , $replacement , $string )
+		{
+			return preg_replace((preg_match('~^(.*?)i$~', $pattern) ? $pattern : $pattern.'i'), $replacement, $string);
+		}
+	endif;
+	
+	/**
+	 * @name             ereg_replace
+	 * @description      ereg_replace — Replace regular expression (PHP 5)
+	 * @url              http://php.adamharvey.name/manual/en/function.eregi-replace.php
+	 * @author            Ivijan-Stefan Stipic <infinitumform@gmail.com>
+	**/
+	if(!function_exists('ereg_replace')):
+		function ereg_replace ($pattern , $replacement , $string )
+		{
+			return preg_replace($pattern, $replacement, $string);
+		}
+	endif;
+	
+	/**
 	 * @name             split
 	 * @description      split — Split string into array by regular expression (PHP 4, PHP 5)
 	 * @url              http://php.net/manual/en/function.split.php
